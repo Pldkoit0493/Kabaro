@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #E3E3E9;
+    overflow-x: hidden;
+  }
+
+  a,
+  button,
+  select {
+    transition: all 0.15s ease-in;
+  }
+
+  input:focus {
+    outline-color: #000;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1408px;
+  }
+}
