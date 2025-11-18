@@ -1,13 +1,18 @@
 "use client"
 
 import Link from "next/link";
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { fontVarien, fontRoboto } from '@/styles/fonts';
+import { products } from '@/data/products';
 
 export default function FrontNavbar() {
   const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Extract unique categories from products data
+  const categories = Array.from(new Set(products.map(product => product.category)));
 
   useEffect(() => {
     const element = document.querySelector('nav');
@@ -26,21 +31,31 @@ export default function FrontNavbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav className={clsx("sticky top-0 z-50 w-full transition-all duration-200", { 'px-0': isSticky, 'px-2.5 md:px-4': !isSticky })}>
-      <div className={clsx("h-[70px] md:h-[92px] w-full bg-white", { 'rounded-0': isSticky, 'rounded-[16px] md:rounded-[20px]': !isSticky })}>
+      <div className={clsx("h-[70px] md:h-[92px] w-full bg-white relative z-50", { 'rounded-0': isSticky, 'rounded-[16px] md:rounded-[20px]': !isSticky })}>
         <div className="container h-full flex items-center justify-between flex-nowrap px-5 md:px-6 lg:px-8 xl:px-10">
           <div className="hidden sm:block">
             <h2 className={fontVarien.className}>
               <Link href="/" className="text-lg md:text-[21px] lg:text-[24px] text-[#131313] uppercase">Ka' Baro</Link>
             </h2>
           </div>
-          <div className={`hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]`}>
-            <Link href="/product">Discover</Link>
-            <Link href="/product">Product</Link>
-            <Link href="/product">Mens</Link>
-            <Link href="/product">Womens</Link>
-            <Link href="/product">Kids</Link>
+          <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">
+            <Link href="/product">Products</Link>
+            {categories.map((category) => (
+              <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="capitalize">{category}</Link>
+            ))}
           </div>
           <div className="w-full md:w-auto flex justify-end items-center gap-x-3 md:gap-x-4">
             <div className="relative h-[40px] sm:h-[44px] mr-auto md:mr-0">
@@ -74,9 +89,20 @@ export default function FrontNavbar() {
                 <path d="M15.3299 18.8201C15.3299 20.6501 13.8299 22.1501 11.9999 22.1501C11.0899 22.1501 10.2499 21.7701 9.64992 21.1701C9.04992 20.5701 8.66992 19.7301 8.66992 18.8201" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" />
               </svg>
             </button>
-            <button type="button" className="md:hidden">
-              <Bars3Icon className="size-6" />
+            <button type="button" className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <XMarkIcon className="size-7" /> : <Bars3Icon className="size-7" />}
             </button>
+          </div>
+        </div>
+      </div>
+      {/* Mobile Menu */}
+      <div className={clsx("md:hidden absolute top-0 left-0 w-full h-screen bg-white z-40 transition-transform duration-300 ease-in-out", { 'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen })}>
+        <div className="container h-full px-5 pt-[90px] pb-5">
+          <div className="flex flex-col items-start gap-y-6 text-lg text-[#131313] capitalize">
+            <Link href="/product" onClick={() => setIsMobileMenuOpen(false)}>All Products</Link>
+            {categories.map((category) => (
+              <Link key={category} href={`/product?category=${category.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)}>{category}</Link>
+            ))}
           </div>
         </div>
       </div>
