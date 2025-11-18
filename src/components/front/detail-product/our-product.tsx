@@ -5,11 +5,9 @@ import { fontVarien } from '@/styles/fonts';
 import CardProduct from "@/components/front/cards/card-product";
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import { products } from '@/data/products';
+import { Product } from '@/types';
 
-type ProductProps = typeof products
-
-export default function OurProdcutSwiper(products: ProductProps) {
+export default function OurProductSwiper({ products }: { products: Product[] }) {
   const swiperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,7 +52,7 @@ export default function OurProdcutSwiper(products: ProductProps) {
         <div ref={swiperRef} className="w-full swiper-container relative overflow-hidden">
           <div className="swiper-wrapper">
             {products.map((product) => (
-              <CardProduct isSwiper={true} key={product.id} title={product.name} image={product.image} category="" price={product.price} />
+              <CardProduct isSwiper={true} key={product.id} {...product} />
             ))}
           </div>
         </div>
