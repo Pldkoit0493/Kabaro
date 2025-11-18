@@ -80,6 +80,6 @@ export default function FrontNavbar() {
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }

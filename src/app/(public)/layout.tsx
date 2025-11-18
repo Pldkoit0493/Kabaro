@@ -3,16 +3,16 @@ import FrontNavbar from "@/components/front/navbar"
 import FrontFooter from "@/components/front/footer"
 
 export default function Layout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode
 }) {
-    return (
-        <>
-            <FrontAnnouncement />
-            <FrontNavbar />
-            {children}
-            <FrontFooter />
-        </>
-    )
+  return (
+    <>
+      <FrontAnnouncement />
+      <FrontNavbar />
+      {children}
+      <FrontFooter />
+    </>
+  )
 }

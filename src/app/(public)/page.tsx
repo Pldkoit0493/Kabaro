@@ -7,7 +7,7 @@ import { fontVarien } from '@/styles/fonts';
 import FrontTitleSection from "@/components/front/home/title-section";
 import FrontHomeProducts from "@/components/front/home/products";
 import FrontProductsFilter from "@/components/front/home/products-filter";
-import { products } from "@/data";
+import { products } from "@/data/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,31 +24,15 @@ export default function Page() {
         <div className="h-full w-full absolute top-0 left-0 flex items-center z-20">
           <div className="container px-10 md:px-6 lg:px-8 xl:px-10">
             <div className="w-full max-w-[993px] text-black">
-              <h2 className={`${fontVarien.className} text-[38px] sm:text-[41px] md:text-[48px] lg:text-[58px] xl:text-[72px] leading-[38px] sm:leading-[41px] md:leading-[48px] lg:leading-[58px] xl:leading-[72px] mb-7 md:mb-8 lg:mb-10`}>Discover Innovative Designs, Premium Quality, and<br /> Unmatched Style</h2>
-              <p className="w-full max-w-[843px] text-base md:text-lg lg:text-xl text-[#212121] mb-7 md:mb-8 lg:mb-10">Immerse Yourself in a World of Fashion Innovation, Where Each Piece is Meticulously Crafted to Combine Superior Quality with Unparalleled Style. From Avant-Garde Designs to Timeless Classics, Our Collection is Curated to Elevate Your Wardrobe and Reflect Your Unique Taste. </p>
-              <Link href="/product" className="h-[56px] w-[159px] inline-flex items-center justify-center bg-[#EB4A26] font-medium text-base text-white rounded-[24px]">
+              <h2 className={`${fontVarien.className} text-[38px] sm:text-[41px] md:text-[48px] lg:text-[58px] xl:text-[72px] leading-[38px] sm:leading-[41px] md:leading-[48px] lg:leading-[58px] xl:leading-[72px] mb-7 md:mb-8 lg:mb-10`}>The perfect fit you've <br />been looking for</h2>
+              <p className="w-full max-w-[843px] text-base md:text-lg lg:text-xl text-[#212121] mb-7 md:mb-8 lg:mb-10">Immerse yourself in a world of fashion innovation, where every piece is thoughtfully crafted to unite exceptional quality with unmatched style. From bold, avant-garde creations to refined timeless classics, our collection is curated to elevate your wardrobe and express your unique sense of taste.</p>
+              <Link href="/product" className="h-[56px] w-[159px] inline-flex items-center justify-center lg:bg-transparent lg:border-2 lg:text-[#e96446] lg:border-[#e96446] sm:bg-[#e96446] sm:text-white md:text-white md:bg-[#e96446]  font-medium text-base text-[#e96446] rounded-[24px] transition-colors lg:group-hover:bg-[#EB4A26] lg:group-hover:text-white p-5">
                 Shop Now
               </Link>
             </div>
           </div>
         </div>
       </header>
-      {/* WE ARE SUPPORTED BY */}
-      <section className="w-full px-2.5 md:px-4 pb-2.5 md:pb-4">
-        <div className="w-full bg-white py-[35px] sm:py-[45px] md:py-[58px] lg:py-[70px] xl:py-[80px] rounded-[16px] md:rounded-[20px]">
-          <div className="container px-8 sm:px-10 md:px-12 lg:px-14 xl:px-16">
-            <FrontTitleSection title="We Are Supported By" classList="mb-7 md:mb-8 lg:mb-10 text-center" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-5 lg:gap-6">
-              <BoxImage image="supported-1.svg" alt="Logo Ipsum" />
-              <BoxImage image="supported-2.svg" alt="Logo Ipsum" />
-              <BoxImage image="supported-3.svg" alt="Logo Ipsum" />
-              <BoxImage image="supported-4.svg" alt="Logo Ipsum" />
-              <BoxImage image="supported-5.svg" alt="Logo Ipsum" />
-              <BoxImage image="supported-6.svg" alt="Logo Ipsum" />
-            </div>
-          </div>
-        </div>
-      </section>
       {/* COMING SOON */}
       <section className="w-full px-2.5 md:px-4 pb-2.5 md:pb-4">
         <div className="w-full bg-white py-[35px] sm:py-[45px] md:py-[58px] lg:py-[70px] xl:py-[80px] rounded-[16px] md:rounded-[20px]">
