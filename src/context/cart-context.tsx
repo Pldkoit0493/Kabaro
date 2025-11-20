@@ -41,17 +41,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems(prevItems => prevItems.filter(item => item.product.id !== productId));
+    setCartItems(prevItems => prevItems.filter(item => Number(item.product.id) !== productId));
   };
 
   const updateQuantity = (productId: number, quantity: number) => {
     setCartItems(prevItems => {
       if (quantity <= 0) {
         // If quantity is 0 or less, remove the item
-        return prevItems.filter(item => item.product.id !== productId);
+        return prevItems.filter(item => Number(item.product.id) !== productId);
       }
       return prevItems.map(item =>
-        item.product.id === productId ? { ...item, quantity } : item
+        Number(item.product.id) === productId ? { ...item, quantity } : item
       );
     });
   };
