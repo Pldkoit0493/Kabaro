@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { fontInter } from "@/styles/fonts";
 import "@/styles/globals.css";
+import { CartProvider } from "@/context/cart-context";
+import FrontNavbar from "@/components/front/navbar";
+import FrontAnnouncement from "@/components/front/announcement";
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontInter.className} antialiased`}>{children}</body>
+      <body className={`${fontInter.className} antialiased`}>
+        <CartProvider>
+          <FrontAnnouncement />
+          <FrontNavbar />
+          <main>{children}</main>
+        </CartProvider>
+      </body>
     </html>
   );
 }

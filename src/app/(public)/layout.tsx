@@ -1,6 +1,7 @@
 import FrontAnnouncement from "@/components/front/announcement"
 import FrontNavbar from "@/components/front/navbar"
 import FrontFooter from "@/components/front/footer"
+import { CartProvider } from "@/context/cart-context"
 
 export default function Layout({
   children,
@@ -9,8 +10,6 @@ export default function Layout({
 }) {
   return (
     <>
-      <FrontAnnouncement />
-      <FrontNavbar />
       {children}
       <FrontFooter />
     </>

@@ -1,4 +1,4 @@
-import CardProduct from "../cards/card-product"
+import CardProduct from "@/components/front/cards/card-product"
 import { Product } from "@/types";
 
 

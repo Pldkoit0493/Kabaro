@@ -6,11 +6,13 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { fontVarien, fontRoboto } from '@/styles/fonts';
 import { products } from '@/data/products';
+import { useCart } from '@/context/cart-context';
 
 export default function FrontNavbar() {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const { getCartItemCount } = useCart();
+  const cartItemCount = getCartItemCount();
   // Extract unique categories from products data
   const categories = Array.from(new Set(products.map(product => product.category)));
 
@@ -52,6 +54,7 @@ export default function FrontNavbar() {
             </h2>
           </div>
           <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">
+            <Link href="/">Home</Link>
             <Link href="/product">Products</Link>
             {categories.map((category) => (
               <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="capitalize">{category}</Link>
@@ -72,16 +75,23 @@ export default function FrontNavbar() {
                 </svg>
               </div>
             </div>
-            <button type="button">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.80994 2L5.18994 5.63" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15.1899 2L18.8099 5.63" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M2 7.8501C2 6.0001 2.99 5.8501 4.22 5.8501H19.78C21.01 5.8501 22 6.0001 22 7.8501C22 10.0001 21.01 9.8501 19.78 9.8501H4.22C2.99 9.8501 2 10.0001 2 7.8501Z" stroke="#292D32" strokeWidth="1.5" />
-                <path d="M9.75977 14V17.55" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M14.3599 14V17.55" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </button>
+            <Link href="/cart" className="relative">
+              <button type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.80994 2L5.18994 5.63" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M15.1899 2L18.8099 5.63" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 7.8501C2 6.0001 2.99 5.8501 4.22 5.8501H19.78C21.01 5.8501 22 6.0001 22 7.8501C22 10.0001 21.01 9.8501 19.78 9.8501H4.22C2.99 9.8501 2 10.0001 2 7.8501Z" stroke="#292D32" strokeWidth="1.5" />
+                  <path d="M9.75977 14V17.55" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M14.3599 14V17.55" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 flex items-center justify-center h-5 w-5 rounded-full bg-red-500 text-white text-xs font-bold">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
             <button type="button">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 6.43994V9.76994" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" />
@@ -99,6 +109,7 @@ export default function FrontNavbar() {
       <div className={clsx("md:hidden absolute top-0 left-0 w-full h-screen bg-white z-40 transition-transform duration-300 ease-in-out", { 'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen })}>
         <div className="container h-full px-5 pt-[90px] pb-5">
           <div className="flex flex-col items-start gap-y-6 text-lg text-[#131313] capitalize">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
             <Link href="/product" onClick={() => setIsMobileMenuOpen(false)}>All Products</Link>
             {categories.map((category) => (
               <Link key={category} href={`/product?category=${category.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)}>{category}</Link>

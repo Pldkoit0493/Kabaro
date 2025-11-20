@@ -3,18 +3,18 @@ import FrontNavbar from "@/components/front/navbar"
 import FrontFooter from "@/components/front/footer"
 
 import "./index.css"
+import { CartProvider } from "@/context/cart-context"
 
 export default function Layout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode
 }) {
-    return (
-        <>
-            <FrontAnnouncement />
-            <FrontNavbar />
-            {children}
-            <FrontFooter />
-        </>
-    )
+  return (
+    <>
+      <FrontAnnouncement />
+      {children}
+      <FrontFooter />
+    </>
+  )
 }
