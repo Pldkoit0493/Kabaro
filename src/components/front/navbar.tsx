@@ -49,32 +49,35 @@ export default function FrontNavbar() {
     <nav className={clsx("sticky top-0 z-50 w-full transition-all duration-200", { 'px-0': isSticky, 'px-2.5 md:px-4': !isSticky })}>
       <div className={clsx("h-[70px] md:h-[92px] w-full bg-white relative z-50", { 'rounded-0': isSticky, 'rounded-[16px] md:rounded-[20px]': !isSticky })}>
         <div className="container h-full flex items-center justify-between flex-nowrap px-5 md:px-6 lg:px-8 xl:px-10">
-          <div className="hidden sm:block">
-            <h2 className={fontVarien.className}>
-              <Link href="/" className="text-lg md:text-[21px] lg:text-[24px] text-[#131313] uppercase">Ka' Baro</Link>
-            </h2>
-          </div>
-          <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">
-            <Link href="/">Home</Link>
-            <Link href="/product">Products</Link>
-            <div className="relative" onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
-              <button
-                type="button"
-                onMouseEnter={() => setIsCategoryDropdownOpen(true)}
-                className="flex items-center gap-1"
-              >
-                Categories
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-              {isCategoryDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                  {categories.map((category) => (
-                    <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 capitalize">
-                      {category}
-                    </Link>
-                  ))}
-                </div>
-              )}
+          {/* Left side wrapper for Logo and Links */}
+          <div className="flex items-center gap-x-8 lg:gap-x-12">
+            <div className="hidden sm:block">
+              <h2 className={fontVarien.className}>
+                <Link href="/" className="text-lg md:text-[21px] lg:text-[24px] text-[#131313] uppercase">Ka' Baro</Link>
+              </h2>
+            </div>
+            <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">
+              <Link href="/">Home</Link>
+              <Link href="/product">Products</Link>
+              <div className="relative" onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
+                <button
+                  type="button"
+                  onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+                  className="flex items-center gap-1"
+                >
+                  Categories
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                {isCategoryDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
+                    {categories.map((category) => (
+                      <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 capitalize">
+                        {category}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="w-full md:w-auto flex justify-end items-center gap-x-3 md:gap-x-4">
