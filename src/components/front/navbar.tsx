@@ -53,7 +53,7 @@ export default function FrontNavbar() {
           <div className="flex items-center gap-x-8 lg:gap-x-12">
             <div className="hidden sm:block">
               <h2 className={fontVarien.className}>
-                <Link href="/" className="text-lg md:text-[21px] lg:text-[24px] text-[#131313] uppercase">Ka' Baro</Link>
+                <Link href="/" className="text-lg md:text-[21px] lg:text-[24px] text-[#131313] uppercase">Ka&apos; Baro</Link>
               </h2>
             </div>
             <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">

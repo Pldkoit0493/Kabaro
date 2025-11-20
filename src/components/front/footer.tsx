@@ -7,8 +7,8 @@ export default function FrontFooter() {
       <div className="bg-[#070707] py-[35px] sm:py-[45px] md:py-[58px] lg:py-[70px] xl:py-[80px] rounded-[16px] md:rounded-[20px]">
         <div className="container flex flex-wrap md:flex-nowrap items-start justify-between px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20">
           <div className="w-full md:w-[380px] lg:w-[433px] text-base text-white mb-8 md:mb-0">
-            <h2 className={`${fontVarien.className} text-[22px] md:text-[24px] mb-5 md:mb-6`}>Ka' Baro</h2>
-            <p className="mb-[42px] opacity-80">Ka' Baro is a sustainable fashion brand that creates stylish, high-quality clothing for confident self-expression. Join us for modern fashion with a classic twist.</p>
+            <h2 className={`${fontVarien.className} text-[22px] md:text-[24px] mb-5 md:mb-6`}>Ka&apos; Baro</h2>
+            <p className="mb-[42px] opacity-80">Ka&apos; Baro is a sustainable fashion brand that creates stylish, high-quality clothing for confident self-expression. Join us for modern fashion with a classic twist.</p>
             <a href="mailto:adnan@iniadnan.dev" className="flex items-center justify-between pb-3 border-b border-[#323232] mb-6">
               <span className="text-xl">EMAIL</span>
               <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">

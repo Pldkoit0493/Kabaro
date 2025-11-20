@@ -12,7 +12,7 @@ export default function CartPage() {
       <section className="w-full py-16">
         <div className="container text-center px-5">
           <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
-          <p className="text-gray-600 mb-8">Looks like you haven't added anything to your cart yet.</p>
+          <p className="text-gray-600 mb-8">Looks like you haven&apos;t added anything to your cart yet.</p>
           <Link href="/product" className="bg-[#EB4A26] text-white py-3 px-6 rounded-full font-medium hover:bg-opacity-90">
             Start Shopping
           </Link>
