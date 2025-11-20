@@ -43,7 +43,7 @@ export default function CartPage() {
                     <h3 className="font-semibold">{product.name}</h3>
                     <p className="text-sm text-gray-500">${product.price.toFixed(2)}</p>
                     <button
-                      onClick={() => removeFromCart(product.id)}
+                      onClick={() => removeFromCart(Number(product.id))}
                       className="text-red-500 text-sm font-medium mt-1 hover:underline"
                     >
                       Remove
@@ -51,14 +51,14 @@ export default function CartPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <button
-                      onClick={() => updateQuantity(product.id, quantity - 1)}
+                      onClick={() => updateQuantity(Number(product.id), quantity - 1)}
                       className="h-8 w-8 border rounded-full flex items-center justify-center"
                     >
                       -
                     </button>
                     <span>{quantity}</span>
                     <button
-                      onClick={() => updateQuantity(product.id, quantity + 1)}
+                      onClick={() => updateQuantity(Number(product.id), quantity + 1)}
                       className="h-8 w-8 border rounded-full flex items-center justify-center"
                     >
                       +
