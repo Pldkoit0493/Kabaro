@@ -12,10 +12,13 @@ export const metadata: Metadata = {
   title: "Products Fashion"
 };
 
-function ProductListingContent({ searchParams }: { searchParams: { category?: string; minPrice?: string; maxPrice?: string; } }) {
+const ITEMS_PER_PAGE = 9;
+
+function ProductListingContent({ searchParams }: { searchParams: { category?: string; minPrice?: string; maxPrice?: string; page?: string; } }) {
   const selectedCategory = searchParams.category;
   const minPrice = searchParams.minPrice ? parseInt(searchParams.minPrice, 10) : null;
   const maxPrice = searchParams.maxPrice ? parseInt(searchParams.maxPrice, 10) : null;
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 
   const filteredProducts = products
     .filter(product => {
@@ -31,6 +34,12 @@ function ProductListingContent({ searchParams }: { searchParams: { category?: st
       const passesMaxPrice = maxPrice !== null ? product.price <= maxPrice : true;
       return passesMinPrice && passesMaxPrice;
     });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
   const headingText = selectedCategory ? `Category: ${selectedCategory}` : "All Products";
 
@@ -50,12 +59,12 @@ function ProductListingContent({ searchParams }: { searchParams: { category?: st
           <AsideFilter />
           <div className="hidden md:block flex-none h-full w-px bg-[#EFEFEF]"></div>
           <main className="grow">
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-              {filteredProducts.map((product: Product) => (
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 min-h-[500px]">
+              {paginatedProducts.map((product: Product) => (
                 <CardProduct key={product.id} {...product} />
               ))}
             </div>
-            <Pagination />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
           </main>
         </div>
       </div>
@@ -63,7 +72,7 @@ function ProductListingContent({ searchParams }: { searchParams: { category?: st
   )
 }
 
-export default function Page({ searchParams }: { searchParams: { category?: string; minPrice?: string; maxPrice?: string; } }) {
+export default function Page({ searchParams }: { searchParams: { category?: string; minPrice?: string; maxPrice?: string; page?: string; } }) {
   return (
     <Suspense fallback={<div>Loading products...</div>}>
       <ProductListingContent searchParams={searchParams} />
