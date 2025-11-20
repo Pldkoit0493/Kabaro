@@ -11,10 +11,11 @@ import { useCart } from '@/context/cart-context';
 export default function FrontNavbar() {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
   // Extract unique categories from products data
-  const categories = Array.from(new Set(products.map(product => product.category)));
+  const categories = Array.from(new Set(products.map(product => product.category))).sort();
 
   useEffect(() => {
     const element = document.querySelector('nav');
@@ -56,9 +57,25 @@ export default function FrontNavbar() {
           <div className="hidden md:flex items-center md:gap-x-6 lg:gap-x-8 md:text-base lg:text-lg text-[#131313]">
             <Link href="/">Home</Link>
             <Link href="/product">Products</Link>
-            {categories.map((category) => (
-              <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="capitalize">{category}</Link>
-            ))}
+            <div className="relative" onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
+              <button
+                type="button"
+                onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+                className="flex items-center gap-1"
+              >
+                Categories
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              {isCategoryDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
+                  {categories.map((category) => (
+                    <Link key={category} href={`/product?category=${category.toLowerCase()}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 capitalize">
+                      {category}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
           <div className="w-full md:w-auto flex justify-end items-center gap-x-3 md:gap-x-4">
             <div className="relative h-[40px] sm:h-[44px] mr-auto md:mr-0">
