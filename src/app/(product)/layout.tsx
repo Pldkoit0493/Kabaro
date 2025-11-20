@@ -12,7 +12,6 @@ export default function Layout({
 }) {
   return (
     <>
-      <FrontAnnouncement />
       {children}
       <FrontFooter />
     </>

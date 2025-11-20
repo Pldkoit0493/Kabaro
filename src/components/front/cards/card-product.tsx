@@ -16,11 +16,6 @@ export default function CardProduct({ id, name, image, slug, category, colors, p
               <h3 className="font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#171717] truncate">{name}</h3>
               <p className="text-[10px] sm:text-xs md:text-base text-[#A3A3A3]">{category}</p>
             </div>
-            <div className="w-full md:w-auto flex-shrink-0 flex items-center gap-x-2 mt-1 md:mt-0">
-              {colors?.map((color, key) => (
-                <span key={key} className={`h-3 lg:h-5 w-3 lg:w-5 inline-block rounded-full`} style={{ backgroundColor: color }}></span>
-              ))}
-            </div>
           </div>
         </div>
       </Link>
